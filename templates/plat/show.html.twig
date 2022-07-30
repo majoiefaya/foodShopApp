@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block class %} sub_page {% endblock %}
+{% block title %}Plat{% endblock %}
+
+{% block ListMenu %}
+<center>
+    
+
+            
+                  <div class="col-sm-6 col-lg-4 all {{ plat.categorieplat.libelle }}">
+                    <div class="box">
+                      <div>
+                        <div class="img-box">
+                          <img src="{{asset('images/PlatImages/')~ plat.image}}" alt="">
+                        </div>
+                        <div class="detail-box">
+                          <h5>
+                            {{ plat.libelle }}
+                          </h5>
+                          <p>
+                            {{ plat.description }}
+                          </p> 
+                          <div class="options">
+                            <h6 style="color: rgb(255, 53, 53);">
+                              {{plat.Prix}} FCFA
+                            </h6>
+                           
+                            <a href="">
+                              
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+
+
+
+   
+    <a href="{{ path('Menu') }}">back to list</a>
+
+    <a href="{{ path('app_plat_edit', {'id': plat.id}) }}">edit</a>
+
+    {% if plat.statut == false %}
+    <a href="{{path('app_plat_restauration', {'id': plat.id})}}" class="btn btn-primary">Restaurer</a>
+    {% endif %}
+
+    {% if plat.statut == true %}
+    {{ include('plat/_delete_form.html.twig') }}
+    {% endif %}
+    </center>
+{% endblock %}
